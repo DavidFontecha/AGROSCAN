@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGROSCAN</title>
+
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header><h1>AGROSCAN</h1></header>
+    <div class="content">
+      <!-- Página 0 -->
+      <div id="page0">
+        <p class="center">¿Qué deseas?</p>
+        <div class="btn-grid">
+          <button class="btn" data-mode="Aguacate">Aguacate</button>
+          <button class="btn" data-mode="Café">Café</button>
+          <button class="btn" data-mode="Plátano">Plátano</button>
+          <button class="btn secondary" data-mode="Auto">Recomiéndame</button>
+        </div>
+      </div>
+      <!-- Página 1 -->
+      <div id="page1" class="hidden">
+        <form id="soilForm">
+          <div class="field"><label for="temp">Temperatura (°C)</label><input id="temp" type="text" pattern="[0-9]+(\.[0-9]+)?" required></div>
+          <div class="field"><label for="humedad">Humedad (%)</label><input id="humedad" type="text" pattern="[0-9]+(\.[0-9]+)?" required></div>
+          <div class="field"><label for="n">Nitrógeno (%)</label><input id="n" type="text" pattern="[0-9]+(\.[0-9]+)?" required></div>
+          <div class="field"><label for="p">Fósforo (%)</label><input id="p" type="text" pattern="[0-9]+(\.[0-9]+)?" required></div>
+          <div class="field"><label for="k">Potasio (%)</label><input id="k" type="text" pattern="[0-9]+(\.[0-9]+)?" required></div>
+          <button type="submit">Siguiente</button>
+          <button type="button" id="btnBack0" class="btn secondary">Volver</button>
+        </form>
+      </div>
+      <!-- Página 2 -->
+      <div id="page2" class="hidden">
+        <div id="resultText"></div>
+        <canvas id="scoreChart"></canvas>
+        <div id="suggestions2" class="suggestions hidden"></div>
+        <button id="btnBack1" class="btn secondary">Volver</button>
+        <button id="btnSuggest" class="btn hidden">Ver sugerencias de otros</button>
+      </div>
+      <!-- Página 3 -->
+      <div id="page3" class="hidden">
+        <canvas id="suggestChart"></canvas>
+        <div id="suggestions" class="suggestions"></div>
+        <button id="btnBack2" class="btn secondary">Volver</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
